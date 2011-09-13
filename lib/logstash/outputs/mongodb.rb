@@ -1,5 +1,6 @@
 require "logstash/outputs/base"
 require "logstash/namespace"
+require "mongo"
 
 class LogStash::Outputs::Mongodb < LogStash::Outputs::Base
 
@@ -23,7 +24,6 @@ class LogStash::Outputs::Mongodb < LogStash::Outputs::Base
 
   public
   def register
-    require "mongo"
     # TODO(petef): check for errors
     db = Mongo::Connection.new(@host, @port).db(@database)
     auth = true

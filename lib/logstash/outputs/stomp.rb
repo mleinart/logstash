@@ -1,5 +1,6 @@
 require "logstash/outputs/base"
 require "logstash/namespace"
+require "stomp"
 
 class LogStash::Outputs::Stomp < LogStash::Outputs::Base
   config_name "stomp"
@@ -28,7 +29,6 @@ class LogStash::Outputs::Stomp < LogStash::Outputs::Base
 
   public
   def register
-    require "stomp"
     @client = Stomp::Client.new(@user, @password.value, @host, @port)
   end # def register
 

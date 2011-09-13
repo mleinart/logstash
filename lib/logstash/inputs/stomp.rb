@@ -1,5 +1,7 @@
 require "logstash/inputs/base"
 require "logstash/namespace"
+require "stomp"
+
 
 # TODO(sissel): This class doesn't work yet in JRuby.
 # http://jira.codehaus.org/browse/JRUBY-4941
@@ -42,8 +44,6 @@ class LogStash::Inputs::Stomp < LogStash::Inputs::Base
 
   public
   def register
-    require "stomp"
-
     @client = Stomp::Client.new(@user, @password.value, @host, @port)
     @stomp_url = "stomp://#{@user}:#{@password}@#{@host}:#{@port}/#{@destination}"
   end # def register
